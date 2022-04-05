@@ -1,0 +1,30 @@
+class ExchangeRateTable:
+    
+    def __init__(self, name, effective_date, rates = None):
+        self.name = name
+        self.effective_date = effective_date
+        self.rates = rates if rates else []
+        
+    def add_rate(self, rate):
+        self.rates.append(rate)
+        
+    def get_rate(self, code):
+        for rate in self.rates:
+            if rate.code == code:
+                return rate              
+    
+    def get_rate_table(self, code):
+        rate_table = {rate: rate.code for rate in self.rates}
+        
+
+class ExchangeRate:
+    
+    def __init__(self, currency, code, ask_rate, bid_rate):
+        self.currency = currency
+        self.code = code
+        self.ask_rate = ask_rate
+        self.bid_rate = bid_rate
+        
+    def __str__(self):
+        return f'<{self.currency} ({self.code}) \t{self.ask_rate} \t{self.bid_rate}>' 
+        
